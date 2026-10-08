@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { extrairImagensPDF, baixarZip } from "../services/extrair.js";
 import Resultados from "../components/Resultados.vue";
+import logoProjeto from "../assets/logo do projeto.png";
 
 const arquivoselecionados = ref(null);
 const imagens = ref([]);
@@ -39,6 +40,8 @@ async function testeextracao() {
 
 <template>
   <h1>Extração de Imagens de PDF</h1>
+
+  <img :src="logoProjeto" alt="Logo do projeto" width="150">
 
   <input
     type="file"
