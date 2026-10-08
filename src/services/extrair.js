@@ -128,3 +128,29 @@ export async function extrairImagensPDF(file) {
 
     return imagens;
   }
+
+export async function baixarZip(imagens) {
+  if (imagens.length === 0) {
+    alert("Nenhuma imagem para baixar");
+    return;
+  }
+
+  const zip = new JSZip();
+
+  for (const imagem of imagens) {
+    zip.file(imagem.nome, imagem.blob);
+  }
+
+  const conteudo = await zip.generateAsync({ type: "blob" });
+  const url = URL.createObjectURL(conteudo);
+
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "imagens.zip";
+  link.click();
+
+  URL.revokeObjectURL(url);
+
+  console.log("ZIP gerado com", imagens.length, "imagens");
+}

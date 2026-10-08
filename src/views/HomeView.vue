@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { extrairImagensPDF } from "../services/extrair.js";
+import { extrairImagensPDF, baixarZip } from "../services/extrair.js";
 import Resultados from "../components/Resultados.vue";
 
 const arquivoselecionados = ref(null);
@@ -48,6 +48,10 @@ async function testeextracao() {
 
   <button @click="testeextracao">
     Extrair PDF
+  </button>
+
+  <button @click="baixarZip(imagens)">
+    Baixar ZIP
   </button>
 
   <Resultados :imagens="imagens" />
